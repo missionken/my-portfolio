@@ -27,7 +27,7 @@ export default function Contact() {
     setStatus('sending')
 
     try {
-      const response = await fetch('https://my-portfolio-mhmtdm5v4-hamimaw-s-projects.vercel.app/api/contact', {
+      const response = await fetch('https://my-portfolio-jade-iota-96.vercel.app/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
