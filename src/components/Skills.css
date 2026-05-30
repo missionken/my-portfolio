@@ -23,11 +23,13 @@
 }
 .skills__tag:hover { background: rgba(74,158,255,0.12); border-color: rgba(74,158,255,0.3); color: #fff; }
 
-/* Resume button */
 .skills__resume-wrap {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 24px;
   margin-top: 48px;
+  flex-wrap: wrap;
 }
 .skills__resume-btn {
   display: inline-block;
@@ -54,4 +56,7 @@
   box-shadow: none;
 }
 
-@media (max-width: 620px) { .skills__grid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) {
+  .skills__grid { grid-template-columns: 1fr; }
+  .skills__resume-wrap { flex-direction: column; }
+}

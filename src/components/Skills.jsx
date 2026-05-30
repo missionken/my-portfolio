@@ -50,6 +50,9 @@ export default function Skills() {
           <a href="#" onClick={e => e.preventDefault()} className="skills__resume-btn">
             RESUME
           </a>
+          <a href="#" onClick={e => e.preventDefault()} className="skills__resume-btn">
+            VIEW PROJECTS
+          </a>
         </div>
 
       </div>
