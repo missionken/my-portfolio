@@ -27,7 +27,7 @@ export default function Contact() {
     setStatus('sending')
 
     try {
-      const response = await fetch('https://my-portfolio-backend-3oht.onrender.com/api/contact', {
+      const response = await fetch('https://my-portfolio-pybzrib7g-hamimaw-s-projects.vercel.app/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
