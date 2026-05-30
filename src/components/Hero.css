@@ -11,9 +11,9 @@
   align-items: center; gap: 60px;
   padding-top: 100px; padding-bottom: 80px;
 }
-.hero__greeting { font-size: 2.6rem; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 4px; }
-.hero__name { font-size: 3.4rem; font-weight: 800; color: #4a9eff; line-height: 1.1; margin-bottom: 24px; white-space: nowrap; }
-.hero__sub { font-size: 0.95rem; color: #c8d8ea; line-height: 1.75; max-width: 420px; }
+.hero__greeting { font-size: 3.2rem; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 4px; }
+.hero__name { font-size: 5.5rem; font-weight: 800; color: #4a9eff; line-height: 1.1; margin-bottom: 24px; white-space: nowrap; }
+.hero__sub { font-size: 1.4rem; color: #c8d8ea; line-height: 1.75; max-width: 420px; }
 .hero__visual { display: flex; justify-content: center; align-items: center; }
 .hero__circle-wrap {
   position: relative; width: 320px; height: 320px;
@@ -45,8 +45,8 @@
   .hero__visual { justify-content: center; }
 }
 @media (max-width: 540px) {
-  .hero__greeting { font-size: 2rem; }
-  .hero__name { font-size: 2.6rem; white-space: nowrap; }
+  .hero__greeting { font-size: 2.4rem; }
+  .hero__name { font-size: 3.2rem; white-space: nowrap; }
   .hero__circle-wrap { width: 260px; height: 260px; }
   .hero__avatar { width: 160px; height: 160px; }
 }

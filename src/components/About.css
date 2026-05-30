@@ -7,6 +7,6 @@
   background: linear-gradient(90deg, transparent, rgba(74,158,255,0.15), transparent);
 }
 .about__body { max-width: 760px; margin: 0 auto; text-align: center; }
-.about__para { font-size: 0.97rem; color: #c8d8ea; line-height: 1.85; margin-bottom: 24px; }
+.about__para { font-size: 1.1rem; color: #c8d8ea; line-height: 1.85; margin-bottom: 24px; }
 .about__para:last-child { margin-bottom: 0; }
 .about__para strong { color: #fff; font-weight: 600; }

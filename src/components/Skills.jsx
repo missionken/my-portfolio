@@ -45,6 +45,13 @@ export default function Skills() {
             </div>
           ))}
         </div>
+
+        <div className="skills__resume-wrap">
+          <a href="#" onClick={e => e.preventDefault()} className="skills__resume-btn">
+            RESUME
+          </a>
+        </div>
+
       </div>
     </section>
   )

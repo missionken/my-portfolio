@@ -30,10 +30,10 @@
 .edu__card:hover { border-color: rgba(74,158,255,0.35); background: #0f2040; }
 .edu__card--active { border-color: rgba(74,158,255,0.3); }
 .edu__card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
-.edu__degree { font-size: 0.95rem; font-weight: 700; color: #fff; }
-.edu__period { font-size: 0.75rem; font-weight: 500; color: #4a9eff; background: rgba(74,158,255,0.12); padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-.edu__school { font-size: 0.87rem; color: #94a3b8; margin-bottom: 10px; }
-.edu__desc { font-size: 0.85rem; color: #7a94b0; line-height: 1.65; }
+.edu__degree { font-size: 1.05rem; font-weight: 700; color: #fff; }
+.edu__period { font-size: 0.85rem; font-weight: 500; color: #4a9eff; background: rgba(74,158,255,0.12); padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.edu__school { font-size: 0.97rem; color: #94a3b8; margin-bottom: 10px; }
+.edu__desc { font-size: 0.95rem; color: #7a94b0; line-height: 1.65; }
 
 @media (max-width: 700px) {
   .edu__line { left: 20px; }

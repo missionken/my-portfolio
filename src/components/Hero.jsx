@@ -1,7 +1,7 @@
 import './Hero.css'
 import kenPhoto from '../assets/ken.jpg'
 
-const CIRCLE_TEXT = ' BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY  •  KEN MISSION   •  '
+const CIRCLE_TEXT = '  BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY   •   KEN MISSION    •  '
 const CIRCLE_R    = 138
 const SVG_SIZE    = 320
 const CENTER      = SVG_SIZE / 2

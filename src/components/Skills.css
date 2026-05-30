@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .skills { background: #0a1628; padding: 100px 0; position: relative; }
 .skills::before {
   content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -20,5 +22,36 @@
   border-radius: 6px; padding: 5px 12px; transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 .skills__tag:hover { background: rgba(74,158,255,0.12); border-color: rgba(74,158,255,0.3); color: #fff; }
+
+/* Resume button */
+.skills__resume-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+.skills__resume-btn {
+  display: inline-block;
+  background: #f5f0dc;
+  color: #1a1a1a;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 16px 44px;
+  border-radius: 12px;
+  border: 3px solid #1a1a1a;
+  box-shadow: 4px 4px 0px #1a1a1a;
+  text-decoration: none;
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+}
+.skills__resume-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #1a1a1a;
+  background: #ede8cc;
+}
+.skills__resume-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
 
 @media (max-width: 620px) { .skills__grid { grid-template-columns: 1fr; } }
