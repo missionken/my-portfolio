@@ -1,5 +1,9 @@
 .about {
   background: #0a1628; padding: 100px 0; position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .about::before {
   content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);

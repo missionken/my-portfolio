@@ -11,9 +11,9 @@
   align-items: center; gap: 60px;
   padding-top: 100px; padding-bottom: 80px;
 }
-.hero__greeting { font-size: 3.2rem; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 4px; }
-.hero__name { font-size: 5.5rem; font-weight: 800; color: #4a9eff; line-height: 1.1; margin-bottom: 24px; white-space: nowrap; }
-.hero__sub { font-size: 1.4rem; color: #c8d8ea; line-height: 1.75; max-width: 420px; }
+.hero__greeting { font-size: 2.95rem; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 4px; }
+.hero__name { font-size: 4.80rem; font-weight: 800; color: #4a9eff; line-height: 1.1; margin-bottom: 24px; white-space: nowrap; }
+.hero__sub { font-size: 1.2rem; color: #c8d8ea; line-height: 1.75; max-width: 420px; }
 .hero__visual { display: flex; justify-content: center; align-items: center; }
 .hero__circle-wrap {
   position: relative; width: 320px; height: 320px;

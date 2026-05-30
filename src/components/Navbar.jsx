@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
   { label: 'Resume', href: '#skills' },
-  { label: 'View Projects', href: '#', disabled: true },
+  { label: 'View Projects', href: '#skills' },
 ]
 
 export default function Navbar() {
@@ -68,7 +68,6 @@ export default function Navbar() {
     <nav className={scrolled ? 'navbar navbar--scrolled' : 'navbar'}>
       <div className="navbar__inner container">
         <a className="navbar__brand" href="#home" onClick={e => handleNav(e, { href: '#home' })}>
-          P. Josephine
         </a>
         <ul className={menuOpen ? 'navbar__links navbar__links--open' : 'navbar__links'}>
           {renderLinks()}
