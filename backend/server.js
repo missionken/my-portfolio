@@ -6,7 +6,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: 'https://missionken.github.io',
+  methods: ['GET', 'POST'],
+}))
 app.use(express.json())
 
 // Test route - to check if server is working
