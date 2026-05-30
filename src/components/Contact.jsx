@@ -8,7 +8,7 @@ const CONTACT_ITEMS = [
   },
   {
     icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
-    label: 'Email', value: 'mission.ken.30@gmail.com', href: 'mailto:p.mission.ken.30@gmail.com',
+    label: 'Email', value: 'mission.ken.30@gmail.com', href: 'mailto:mission.ken.30@gmail.com',
   },
   {
     icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6 6l.94-.95a2 2 0 0 1 2.12-.44 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>,
@@ -18,14 +18,36 @@ const CONTACT_ITEMS = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const handleSubmit = e => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
-    setForm({ name: '', email: '', message: '' })
+    setStatus('sending')
+
+    try {
+      const response = await fetch('http://localhost:3000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setStatus('sent')
+        setForm({ name: '', email: '', message: '' })
+        setTimeout(() => setStatus('idle'), 4000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 4000)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 4000)
+    }
   }
 
   return (
@@ -69,8 +91,11 @@ export default function Contact() {
                   rows={6} value={form.message} onChange={handleChange}
                   className="contact__input contact__textarea" required />
               </div>
-              <button type="submit" className="contact__btn">
-                {sent ? '✓ Message Sent!' : 'Send Message'}
+              <button type="submit" className="contact__btn" disabled={status === 'sending'}>
+                {status === 'sending' && '⏳ Sending...'}
+                {status === 'sent' && '✓ Message Sent!'}
+                {status === 'error' && '❌ Failed. Try Again'}
+                {status === 'idle' && 'Send Message'}
               </button>
             </form>
           </div>
