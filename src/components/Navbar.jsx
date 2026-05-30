@@ -39,7 +39,6 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
         <a className="navbar__brand" href="#home" onClick={e => handleNav(e, '#home')}>
-          K. Mission
         </a>
         <ul className={`navbar__links${menuOpen ? ' navbar__links--open' : ''}`}>
          {NAV_LINKS.map(link => (
