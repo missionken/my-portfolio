@@ -5,12 +5,12 @@ const SKILL_GROUPS = [
   {
     icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>,
     title: 'Frontend',
-    tags: ['HTML5 / CSS3', 'JavaScript (ES6+)', 'Dynamic UI'],
+    tags: ['HTML5 / CSS3', 'React', 'JavaScript (ES6+)', 'Dynamic UI'],
   },
   {
     icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>,
     title: 'Backend & DB',
-    tags: ['Java', 'Python', 'C#', 'MySQL / MONGODB', 'API Development', 'Data Analytics & Visualization'],
+    tags: ['Node.js', 'Java', 'Python', 'C#', 'MySQL / MONGODB', 'API Development'],
   },
   {
     icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>,
