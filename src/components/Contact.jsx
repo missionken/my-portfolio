@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import useScrollReveal from '../hooks/useScrollReveal'
 import './Contact.css'
 
 const CONTACT_ITEMS = [
@@ -18,23 +19,25 @@ const CONTACT_ITEMS = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [status, setStatus] = useState('idle')
+
+  const titleRef   = useScrollReveal()
+  const divRef     = useScrollReveal()
+  const detailsRef = useScrollReveal()
+  const formRef    = useScrollReveal()
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-
     try {
       const response = await fetch('https://my-portfolio-jade-iota-96.vercel.app/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       })
-
       const data = await response.json()
-
       if (data.success) {
         setStatus('sent')
         setForm({ name: '', email: '', message: '' })
@@ -44,7 +47,6 @@ export default function Contact() {
         setTimeout(() => setStatus('idle'), 4000)
       }
     } catch (error) {
-      console.error('Error:', error)
       setStatus('error')
       setTimeout(() => setStatus('idle'), 4000)
     }
@@ -52,9 +54,17 @@ export default function Contact() {
 
   return (
     <section id="contact" className="contact">
+      <div className="contact__orbs" aria-hidden="true">
+        <div className="contact__orb contact__orb--1" />
+        <div className="contact__orb contact__orb--2" />
+        <div className="contact__orb contact__orb--3" />
+        <div className="contact__orb contact__orb--4" />
+      </div>
       <div className="container">
+        <h2 ref={titleRef} className="section-title reveal">Get In Touch</h2>
+        <div ref={divRef} className="section-divider reveal reveal-delay-1" />
         <div className="contact__grid">
-          <div className="contact__details animate-left">
+          <div ref={detailsRef} className="contact__details reveal reveal-left reveal-delay-1">
             <h3 className="contact__details-title">Contact Details</h3>
             <ul className="contact__list">
               {CONTACT_ITEMS.map(item => (
@@ -70,8 +80,7 @@ export default function Contact() {
               ))}
             </ul>
           </div>
-
-          <div className="contact__form-wrap animate-right delay-2">
+          <div ref={formRef} className="contact__form-wrap reveal reveal-right reveal-delay-2">
             <form className="contact__form" onSubmit={handleSubmit} noValidate>
               <div className="contact__form-row">
                 <div className="contact__field">
@@ -93,9 +102,9 @@ export default function Contact() {
               </div>
               <button type="submit" className="contact__btn" disabled={status === 'sending'}>
                 {status === 'sending' && '⏳ Sending...'}
-                {status === 'sent' && '✓ Message Sent!'}
-                {status === 'error' && '❌ Failed. Try Again'}
-                {status === 'idle' && 'Send Message'}
+                {status === 'sent'    && '✓ Message Sent!'}
+                {status === 'error'   && '❌ Failed. Try Again'}
+                {status === 'idle'    && 'Send Message'}
               </button>
             </form>
           </div>

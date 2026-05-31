@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import './Hero.css'
 import kenPhoto from '../assets/ken.jpg'
 
@@ -7,6 +8,76 @@ const SVG_SIZE    = 320
 const CENTER      = SVG_SIZE / 2
 
 export default function Hero() {
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let animId
+    let particles = []
+
+    const resize = () => {
+      canvas.width  = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    class Particle {
+      constructor() { this.reset() }
+      reset() {
+        this.x     = Math.random() * canvas.width
+        this.y     = Math.random() * canvas.height
+        this.r     = Math.random() * 2 + 0.5
+        this.dx    = (Math.random() - 0.5) * 0.4
+        this.dy    = (Math.random() - 0.5) * 0.4
+        this.alpha = Math.random() * 0.5 + 0.1
+      }
+      update() {
+        this.x += this.dx
+        this.y += this.dy
+        if (this.x < 0 || this.x > canvas.width ||
+            this.y < 0 || this.y > canvas.height) this.reset()
+      }
+      draw() {
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(74,158,255,${this.alpha})`
+        ctx.fill()
+      }
+    }
+
+    for (let i = 0; i < 90; i++) particles.push(new Particle())
+
+    const loop = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      particles.forEach(p => { p.update(); p.draw() })
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x
+          const dy = particles[i].y - particles[j].y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < 100) {
+            ctx.beginPath()
+            ctx.moveTo(particles[i].x, particles[i].y)
+            ctx.lineTo(particles[j].x, particles[j].y)
+            ctx.strokeStyle = `rgba(74,158,255,${0.05 * (1 - dist / 100)})`
+            ctx.lineWidth = 0.5
+            ctx.stroke()
+          }
+        }
+      }
+      animId = requestAnimationFrame(loop)
+    }
+    loop()
+
+    return () => {
+      cancelAnimationFrame(animId)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
   return (
     <section id="home" className="hero">
       <div className="hero__bg" aria-hidden="true">
@@ -26,6 +97,7 @@ export default function Hero() {
           <path d="M-100 260 Q350 130 650 290 Q950 450 1300 220"
             fill="none" stroke="rgba(56,189,248,0.05)" strokeWidth="1" />
         </svg>
+        <canvas ref={canvasRef} className="hero__particles" aria-hidden="true" />
       </div>
 
       <div className="hero__inner container">
@@ -58,7 +130,6 @@ export default function Hero() {
                 </textPath>
               </text>
             </svg>
-
             <div className="hero__avatar">
               <img src={kenPhoto} alt="Ken Mission" className="hero__avatar-img" />
             </div>

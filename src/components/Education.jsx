@@ -1,3 +1,4 @@
+import useScrollReveal from '../hooks/useScrollReveal'
 import './Education.css'
 
 const EDUCATION = [
@@ -25,29 +26,46 @@ const CapIcon = () => (
   </svg>
 )
 
+function EduCard({ item, index }) {
+  const ref = useScrollReveal()
+  return (
+    <div
+      ref={ref}
+      className={`edu__row edu__row--${item.side} reveal`}
+      style={{ transitionDelay: `${0.15 + index * 0.15}s` }}
+    >
+      <div className={`edu__card${item.side === 'right' ? ' edu__card--active' : ''}`}>
+        <div className="edu__card-header">
+          <span className="edu__degree">{item.degree}</span>
+          <span className="edu__period">{item.period}</span>
+        </div>
+        <p className="edu__school">{item.school}</p>
+        <p className="edu__desc">{item.desc}</p>
+      </div>
+      <div className="edu__dot"><CapIcon /></div>
+      <div className="edu__spacer" />
+    </div>
+  )
+}
+
 export default function Education() {
+  const titleRef = useScrollReveal()
+  const divRef   = useScrollReveal()
+
   return (
     <section id="education" className="education">
+      <div className="edu__geo-bg" aria-hidden="true">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div key={i} className={`edu__hex edu__hex--${i}`} />
+        ))}
+      </div>
       <div className="container">
-        <h2 className="section-title animate-up">Education</h2>
-        <div className="section-divider animate-up delay-1" />
+        <h2 ref={titleRef} className="section-title reveal">Education</h2>
+        <div ref={divRef} className="section-divider reveal reveal-delay-1" />
         <div className="edu__timeline">
           <div className="edu__line" aria-hidden="true" />
           {EDUCATION.map((item, i) => (
-            <div key={i}
-              className={`edu__row edu__row--${item.side} animate-up`}
-              style={{ animationDelay: `${0.2 + i * 0.15}s` }}>
-              <div className={`edu__card${item.side === 'right' ? ' edu__card--active' : ''}`}>
-                <div className="edu__card-header">
-                  <span className="edu__degree">{item.degree}</span>
-                  <span className="edu__period">{item.period}</span>
-                </div>
-                <p className="edu__school">{item.school}</p>
-                <p className="edu__desc">{item.desc}</p>
-              </div>
-              <div className="edu__dot"><CapIcon /></div>
-              <div className="edu__spacer" />
-            </div>
+            <EduCard key={i} item={item} index={i} />
           ))}
         </div>
       </div>
